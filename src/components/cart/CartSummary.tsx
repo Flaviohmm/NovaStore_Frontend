@@ -13,38 +13,40 @@ export function CartSummary({ showCheckoutButton = true }: CartSummaryProps) {
   const total = subtotal + shipping
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-      <h2 className="mb-4 text-lg font-semibold text-slate-900">
+    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+      <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">
         Resumo do pedido
       </h2>
 
       <dl className="space-y-3 text-sm">
         <div className="flex justify-between">
-          <dt className="text-slate-500">
+          <dt className="text-slate-500 dark:text-slate-400">
             Subtotal ({itemCount} {itemCount === 1 ? 'item' : 'itens'})
           </dt>
-          <dd className="font-medium text-slate-900">
+          <dd className="font-medium text-slate-900 dark:text-slate-100">
             {formatCurrency(subtotal)}
           </dd>
         </div>
         <div className="flex justify-between">
-          <dt className="text-slate-500">Frete</dt>
-          <dd className="font-medium text-slate-900">
+          <dt className="text-slate-500 dark:text-slate-400">Frete</dt>
+          <dd className="font-medium text-slate-900 dark:text-slate-100">
             {shipping === 0 ? (
-              <span className="text-emerald-600">Grátis</span>
+              <span className="text-emerald-600 dark:text-emerald-400">Grátis</span>
             ) : (
               formatCurrency(shipping)
             )}
           </dd>
         </div>
         {subtotal > 0 && subtotal < 200 && (
-          <p className="rounded-lg bg-brand-50 px-3 py-2 text-xs text-brand-700">
+          <p className="rounded-lg bg-brand-50 px-3 py-2 text-xs text-brand-700 dark:bg-brand-950 dark:text-brand-300">
             Faltam {formatCurrency(200 - subtotal)} para frete grátis!
           </p>
         )}
-        <div className="flex justify-between border-t border-slate-100 pt-3">
-          <dt className="text-base font-semibold text-slate-900">Total</dt>
-          <dd className="text-base font-bold text-slate-900">
+        <div className="flex justify-between border-t border-slate-100 pt-3 dark:border-slate-800">
+          <dt className="text-base font-semibold text-slate-900 dark:text-white">
+            Total
+          </dt>
+          <dd className="text-base font-bold text-slate-900 dark:text-white">
             {formatCurrency(total)}
           </dd>
         </div>

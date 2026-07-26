@@ -23,8 +23,8 @@ export function ProductGrid({
 
   if (!products?.length) {
     return (
-      <div className="flex min-h-64 flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center">
-        <p className="text-slate-500">{emptyMessage}</p>
+      <div className="flex min-h-64 flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center dark:border-slate-700 dark:bg-slate-900">
+        <p className="text-slate-500 dark:text-slate-400">{emptyMessage}</p>
       </div>
     )
   }

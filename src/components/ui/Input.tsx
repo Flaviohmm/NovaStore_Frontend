@@ -23,7 +23,7 @@ export function Input({
       {label && (
         <label
           htmlFor={inputId}
-          className="mb-1.5 block text-sm font-medium text-slate-700"
+          className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300"
         >
           {label}
         </label>
@@ -41,15 +41,23 @@ export function Input({
             placeholder:text-slate-400 transition-colors
             focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent
             disabled:bg-slate-50 disabled:text-slate-500
+            dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-500
+            dark:disabled:bg-slate-800 dark:disabled:text-slate-500
             ${leftIcon ? 'pl-10' : ''}
-            ${error ? 'border-red-400 focus:ring-red-500' : 'border-slate-300'}
+            ${
+              error
+                ? 'border-red-400 focus:ring-red-500'
+                : 'border-slate-300 dark:border-slate-600'
+            }
             ${className}
           `}
           {...props}
         />
       </div>
-      {error && <p className="mt-1.5 text-xs text-red-600">{error}</p>}
-      {hint && !error && <p className="mt-1.5 text-xs text-slate-500">{hint}</p>}
+      {error && <p className="mt-1.5 text-xs text-red-600 dark:text-red-400">{error}</p>}
+      {hint && !error && (
+        <p className="mt-1.5 text-xs text-slate-500 dark:text-slate-400">{hint}</p>
+      )}
     </div>
   )
 }

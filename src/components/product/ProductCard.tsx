@@ -18,9 +18,9 @@ export function ProductCard({ product }: ProductCardProps) {
       : null
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
+    <article className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:shadow-black/40">
       <Link to={`/produtos/${product.id}`} className="relative block overflow-hidden">
-        <div className="aspect-square overflow-hidden bg-slate-100">
+        <div className="aspect-square overflow-hidden bg-slate-100 dark:bg-slate-800">
           <img
             src={product.image}
             alt={product.name}
@@ -41,21 +41,21 @@ export function ProductCard({ product }: ProductCardProps) {
       </Link>
 
       <div className="flex flex-1 flex-col p-4">
-        <p className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-400">
+        <p className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">
           {product.category}
         </p>
         <Link to={`/produtos/${product.id}`}>
-          <h3 className="mb-2 line-clamp-2 text-sm font-semibold text-slate-900 transition-colors group-hover:text-brand-600">
+          <h3 className="mb-2 line-clamp-2 text-sm font-semibold text-slate-900 transition-colors group-hover:text-brand-600 dark:text-slate-100 dark:group-hover:text-brand-400">
             {product.name}
           </h3>
         </Link>
 
         <div className="mb-3 flex items-center gap-1.5">
           <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-          <span className="text-xs font-medium text-slate-700">
+          <span className="text-xs font-medium text-slate-700 dark:text-slate-300">
             {product.rating.toFixed(1)}
           </span>
-          <span className="text-xs text-slate-400">
+          <span className="text-xs text-slate-400 dark:text-slate-500">
             ({product.reviewCount})
           </span>
         </div>
@@ -63,11 +63,11 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="mt-auto flex items-end justify-between gap-2">
           <div>
             {product.originalPrice && (
-              <p className="text-xs text-slate-400 line-through">
+              <p className="text-xs text-slate-400 line-through dark:text-slate-500">
                 {formatCurrency(product.originalPrice)}
               </p>
             )}
-            <p className="text-lg font-bold text-slate-900">
+            <p className="text-lg font-bold text-slate-900 dark:text-white">
               {formatCurrency(product.price)}
             </p>
           </div>

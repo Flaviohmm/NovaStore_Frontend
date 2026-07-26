@@ -8,6 +8,7 @@
       name="description"
       content="NovaStore — sua loja online com os melhores produtos"
     />
+    <meta name="color-scheme" content="light dark" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,6 +16,22 @@
       rel="stylesheet"
     />
     <title>NovaStore — E-commerce</title>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('ecommerce_theme')
+          var theme = stored === 'light' || stored === 'dark' || stored === 'system'
+            ? stored
+            : 'system'
+          var isDark =
+            theme === 'dark' ||
+            (theme === 'system' &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches)
+          document.documentElement.classList.toggle('dark', isDark)
+          document.documentElement.style.colorScheme = isDark ? 'dark' : 'light'
+        } catch (e) {}
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

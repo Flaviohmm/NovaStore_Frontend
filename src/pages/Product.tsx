@@ -36,10 +36,10 @@ export function Product() {
   if (isError || !product) {
     return (
       <div className="mx-auto max-w-7xl px-4 py-16 text-center sm:px-6">
-        <h1 className="mb-2 text-2xl font-bold text-slate-900">
+        <h1 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
           Produto não encontrado
         </h1>
-        <p className="mb-6 text-slate-500">
+        <p className="mb-6 text-slate-500 dark:text-slate-400">
           O produto que você procura não existe ou foi removido.
         </p>
         <Link to="/produtos">
@@ -69,14 +69,14 @@ export function Product() {
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <Link
         to="/produtos"
-        className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-brand-600"
+        className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-brand-600 dark:text-slate-400 dark:hover:text-brand-400"
       >
         <ArrowLeft className="h-4 w-4" />
         Voltar aos produtos
       </Link>
 
       <div className="grid gap-10 lg:grid-cols-2">
-        <div className="relative overflow-hidden rounded-3xl bg-slate-100">
+        <div className="relative overflow-hidden rounded-3xl bg-slate-100 dark:bg-slate-800">
           <img
             src={product.image}
             alt={product.name}
@@ -90,10 +90,10 @@ export function Product() {
         </div>
 
         <div className="flex flex-col">
-          <p className="mb-2 text-sm font-medium uppercase tracking-wide text-brand-600">
+          <p className="mb-2 text-sm font-medium uppercase tracking-wide text-brand-600 dark:text-brand-400">
             {product.category}
           </p>
-          <h1 className="mb-3 text-3xl font-bold text-slate-900 sm:text-4xl">
+          <h1 className="mb-3 text-3xl font-bold text-slate-900 sm:text-4xl dark:text-white">
             {product.name}
           </h1>
 
@@ -105,39 +105,39 @@ export function Product() {
                   className={`h-4 w-4 ${
                     i < Math.round(product.rating)
                       ? 'fill-amber-400 text-amber-400'
-                      : 'text-slate-200'
+                      : 'text-slate-200 dark:text-slate-700'
                   }`}
                 />
               ))}
             </div>
-            <span className="text-sm font-medium text-slate-700">
+            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
               {product.rating.toFixed(1)}
             </span>
-            <span className="text-sm text-slate-400">
+            <span className="text-sm text-slate-400 dark:text-slate-500">
               · {product.reviewCount} avaliações
             </span>
           </div>
 
           <div className="mb-6">
             {product.originalPrice && (
-              <p className="text-sm text-slate-400 line-through">
+              <p className="text-sm text-slate-400 line-through dark:text-slate-500">
                 {formatCurrency(product.originalPrice)}
               </p>
             )}
-            <p className="text-3xl font-bold text-slate-900">
+            <p className="text-3xl font-bold text-slate-900 dark:text-white">
               {formatCurrency(product.price)}
             </p>
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
               ou 10x de {formatCurrency(product.price / 10)} sem juros
             </p>
           </div>
 
-          <p className="mb-8 leading-relaxed text-slate-600">
+          <p className="mb-8 leading-relaxed text-slate-600 dark:text-slate-300">
             {product.description}
           </p>
 
-          <div className="mb-4 flex items-center gap-2 text-sm text-slate-600">
-            <Truck className="h-4 w-4 text-brand-600" />
+          <div className="mb-4 flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+            <Truck className="h-4 w-4 text-brand-600 dark:text-brand-400" />
             Frete grátis acima de R$ 200
           </div>
 
@@ -152,11 +152,11 @@ export function Product() {
           </div>
 
           <div className="mt-auto flex flex-wrap items-center gap-4">
-            <div className="flex items-center rounded-xl border border-slate-200 bg-white">
+            <div className="flex items-center rounded-xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900">
               <button
                 type="button"
                 onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                className="flex h-12 w-12 items-center justify-center text-slate-500 hover:text-slate-900"
+                className="flex h-12 w-12 items-center justify-center text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                 aria-label="Diminuir"
               >
                 <Minus className="h-4 w-4" />
@@ -170,7 +170,7 @@ export function Product() {
                   setQuantity((q) => Math.min(product.stock, q + 1))
                 }
                 disabled={quantity >= product.stock}
-                className="flex h-12 w-12 items-center justify-center text-slate-500 hover:text-slate-900 disabled:opacity-40"
+                className="flex h-12 w-12 items-center justify-center text-slate-500 hover:text-slate-900 disabled:opacity-40 dark:text-slate-400 dark:hover:text-white"
                 aria-label="Aumentar"
               >
                 <Plus className="h-4 w-4" />
@@ -198,11 +198,11 @@ export function Product() {
           </div>
 
           {inCart > 0 && (
-            <p className="mt-3 text-sm text-slate-500">
+            <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">
               Você já tem {inCart} no carrinho.{' '}
               <Link
                 to="/carrinho"
-                className="font-medium text-brand-600 hover:underline"
+                className="font-medium text-brand-600 hover:underline dark:text-brand-400"
               >
                 Ver carrinho
               </Link>
@@ -213,7 +213,7 @@ export function Product() {
 
       {related && related.length > 0 && (
         <section className="mt-16">
-          <h2 className="mb-6 text-2xl font-bold text-slate-900">
+          <h2 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white">
             Produtos relacionados
           </h2>
           <ProductGrid products={related} isLoading={relatedLoading} />

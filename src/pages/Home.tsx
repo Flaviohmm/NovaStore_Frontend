@@ -69,7 +69,7 @@ export function Home() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white/30 bg-transparent text-white hover:bg-white/10"
+                  className="border-white/30 bg-transparent text-white hover:bg-white/10 dark:border-white/30 dark:bg-transparent dark:text-white dark:hover:bg-white/10"
                 >
                   Eletrônicos
                 </Button>
@@ -95,18 +95,18 @@ export function Home() {
       </section>
 
       {/* Benefits */}
-      <section className="border-b border-slate-200 bg-white">
+      <section className="border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 py-10 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
           {benefits.map((item) => (
             <div key={item.title} className="flex gap-3">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-950 dark:text-brand-400">
                 <item.icon className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-slate-900">
+                <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
                   {item.title}
                 </h3>
-                <p className="text-xs leading-relaxed text-slate-500">
+                <p className="text-xs leading-relaxed text-slate-500 dark:text-slate-400">
                   {item.description}
                 </p>
               </div>
@@ -119,8 +119,10 @@ export function Home() {
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="mb-8 flex items-end justify-between">
           <div>
-            <h2 className="text-2xl font-bold text-slate-900">Categorias</h2>
-            <p className="mt-1 text-sm text-slate-500">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+              Categorias
+            </h2>
+            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
               Explore por tipo de produto
             </p>
           </div>
@@ -132,7 +134,7 @@ export function Home() {
               <Link
                 key={cat.id}
                 to={`/produtos?categoria=${cat.id}`}
-                className="rounded-2xl border border-slate-200 bg-white px-4 py-6 text-center text-sm font-medium text-slate-700 shadow-sm transition hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700"
+                className="rounded-2xl border border-slate-200 bg-white px-4 py-6 text-center text-sm font-medium text-slate-700 shadow-sm transition hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-brand-700 dark:hover:bg-brand-950 dark:hover:text-brand-300"
               >
                 {cat.label}
               </Link>
@@ -144,16 +146,16 @@ export function Home() {
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mb-8 flex items-end justify-between">
           <div>
-            <h2 className="text-2xl font-bold text-slate-900">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
               Destaques da semana
             </h2>
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
               Produtos selecionados com os melhores preços
             </p>
           </div>
           <Link
             to="/produtos"
-            className="hidden items-center gap-1 text-sm font-medium text-brand-600 hover:text-brand-700 sm:flex"
+            className="hidden items-center gap-1 text-sm font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 sm:flex"
           >
             Ver todos
             <ArrowRight className="h-4 w-4" />

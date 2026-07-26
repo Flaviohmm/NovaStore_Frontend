@@ -43,17 +43,17 @@ export function Login() {
           <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-600 text-white shadow-lg shadow-brand-600/30">
             <Store className="h-7 w-7" />
           </div>
-          <h1 className="text-2xl font-bold text-slate-900">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
             Entrar na NovaStore
           </h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
             Acesse sua conta para continuar
           </p>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"
+          className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 dark:border-slate-800 dark:bg-slate-900"
         >
           <div className="space-y-4">
             <Input
@@ -82,7 +82,7 @@ export function Login() {
           </div>
 
           {error && (
-            <div className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            <div className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
               {error}
             </div>
           )}
@@ -97,16 +97,16 @@ export function Login() {
             Entrar
           </Button>
 
-          <p className="mt-6 text-center text-sm text-slate-500">
+          <p className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
             Não tem conta?{' '}
-            <span className="font-medium text-brand-600">
+            <span className="font-medium text-brand-600 dark:text-brand-400">
               Cadastro em breve
             </span>
           </p>
         </form>
 
-        <p className="mt-6 text-center text-sm text-slate-400">
-          <Link to="/" className="hover:text-brand-600">
+        <p className="mt-6 text-center text-sm text-slate-400 dark:text-slate-500">
+          <Link to="/" className="hover:text-brand-600 dark:hover:text-brand-400">
             ← Voltar à loja
           </Link>
         </p>

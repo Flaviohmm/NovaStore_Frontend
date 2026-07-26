@@ -11,7 +11,7 @@ interface ProductFiltersProps {
 
 export function ProductFiltersBar({ filters, onChange }: ProductFiltersProps) {
   return (
-    <div className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:flex-row sm:items-end">
+    <div className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:flex-row sm:items-end dark:border-slate-800 dark:bg-slate-900">
       <div className="flex-1">
         <Input
           label="Buscar"

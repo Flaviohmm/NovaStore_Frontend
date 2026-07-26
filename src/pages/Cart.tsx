@@ -11,13 +11,13 @@ export function Cart() {
   if (itemCount === 0) {
     return (
       <div className="mx-auto max-w-7xl px-4 py-20 text-center sm:px-6">
-        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-slate-100">
-          <ShoppingBag className="h-10 w-10 text-slate-400" />
+        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800">
+          <ShoppingBag className="h-10 w-10 text-slate-400 dark:text-slate-500" />
         </div>
-        <h1 className="mb-2 text-2xl font-bold text-slate-900">
+        <h1 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
           Seu carrinho está vazio
         </h1>
-        <p className="mb-8 text-slate-500">
+        <p className="mb-8 text-slate-500 dark:text-slate-400">
           Adicione produtos para continuar a compra.
         </p>
         <Link to="/produtos">
@@ -31,8 +31,10 @@ export function Cart() {
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="mb-8 flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Carrinho</h1>
-          <p className="mt-1 text-slate-500">
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
+            Carrinho
+          </h1>
+          <p className="mt-1 text-slate-500 dark:text-slate-400">
             {itemCount} {itemCount === 1 ? 'item' : 'itens'} no carrinho
           </p>
         </div>
@@ -42,7 +44,7 @@ export function Cart() {
       </div>
 
       <div className="grid gap-8 lg:grid-cols-3">
-        <div className="rounded-2xl border border-slate-200 bg-white px-5 shadow-sm lg:col-span-2">
+        <div className="rounded-2xl border border-slate-200 bg-white px-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 lg:col-span-2">
           {items.map((item) => (
             <CartItemRow key={item.product.id} item={item} />
           ))}

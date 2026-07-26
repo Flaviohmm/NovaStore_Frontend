@@ -37,10 +37,10 @@ export function Checkout() {
   if (itemCount === 0 && !orderComplete) {
     return (
       <div className="mx-auto max-w-7xl px-4 py-20 text-center sm:px-6">
-        <h1 className="mb-2 text-2xl font-bold text-slate-900">
+        <h1 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
           Nenhum item no carrinho
         </h1>
-        <p className="mb-8 text-slate-500">
+        <p className="mb-8 text-slate-500 dark:text-slate-400">
           Adicione produtos antes de finalizar a compra.
         </p>
         <Link to="/produtos">
@@ -53,16 +53,16 @@ export function Checkout() {
   if (orderComplete) {
     return (
       <div className="mx-auto max-w-lg px-4 py-20 text-center sm:px-6">
-        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-100">
-          <CheckCircle className="h-10 w-10 text-emerald-600" />
+        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-950">
+          <CheckCircle className="h-10 w-10 text-emerald-600 dark:text-emerald-400" />
         </div>
-        <h1 className="mb-2 text-2xl font-bold text-slate-900">
+        <h1 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
           Pedido confirmado!
         </h1>
-        <p className="mb-2 text-slate-500">
+        <p className="mb-2 text-slate-500 dark:text-slate-400">
           Obrigado pela compra. Seu pedido foi recebido com sucesso.
         </p>
-        <p className="mb-8 font-mono text-sm text-slate-400">
+        <p className="mb-8 font-mono text-sm text-slate-400 dark:text-slate-500">
           Código: {orderId}
         </p>
         <div className="flex flex-col gap-2 sm:flex-row sm:justify-center">
@@ -105,7 +105,6 @@ export function Checkout() {
     if (!validate()) return
 
     setIsSubmitting(true)
-    // Simulate order processing
     await new Promise((r) => setTimeout(r, 1200))
     const id = `NS-${Date.now().toString(36).toUpperCase()}`
     setOrderId(id)
@@ -118,13 +117,15 @@ export function Checkout() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-      <h1 className="mb-2 text-3xl font-bold text-slate-900">Checkout</h1>
-      <p className="mb-8 text-slate-500">
+      <h1 className="mb-2 text-3xl font-bold text-slate-900 dark:text-white">
+        Checkout
+      </h1>
+      <p className="mb-8 text-slate-500 dark:text-slate-400">
         Preencha seus dados para finalizar o pedido
       </p>
 
       {!isAuthenticated && (
-        <div className="mb-6 rounded-xl border border-brand-200 bg-brand-50 px-4 py-3 text-sm text-brand-800">
+        <div className="mb-6 rounded-xl border border-brand-200 bg-brand-50 px-4 py-3 text-sm text-brand-800 dark:border-brand-800 dark:bg-brand-950 dark:text-brand-200">
           Já tem conta?{' '}
           <button
             type="button"
@@ -140,9 +141,8 @@ export function Checkout() {
       <form onSubmit={handleSubmit}>
         <div className="grid gap-8 lg:grid-cols-3">
           <div className="space-y-6 lg:col-span-2">
-            {/* Contact */}
-            <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="mb-4 text-lg font-semibold text-slate-900">
+            <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">
                 Dados de contato
               </h2>
               <div className="grid gap-4 sm:grid-cols-2">
@@ -173,9 +173,8 @@ export function Checkout() {
               </div>
             </section>
 
-            {/* Address */}
-            <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="mb-4 text-lg font-semibold text-slate-900">
+            <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">
                 Endereço de entrega
               </h2>
               <div className="grid gap-4 sm:grid-cols-2">
@@ -211,9 +210,8 @@ export function Checkout() {
               </div>
             </section>
 
-            {/* Payment */}
-            <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="mb-4 text-lg font-semibold text-slate-900">
+            <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">
                 Forma de pagamento
               </h2>
               <div className="grid gap-3 sm:grid-cols-3">
@@ -234,8 +232,8 @@ export function Checkout() {
                     onClick={() => update('paymentMethod', method.value)}
                     className={`flex flex-col items-center gap-2 rounded-xl border-2 px-4 py-4 text-sm font-medium transition ${
                       form.paymentMethod === method.value
-                        ? 'border-brand-600 bg-brand-50 text-brand-700'
-                        : 'border-slate-200 text-slate-600 hover:border-slate-300'
+                        ? 'border-brand-600 bg-brand-50 text-brand-700 dark:border-brand-500 dark:bg-brand-950 dark:text-brand-300'
+                        : 'border-slate-200 text-slate-600 hover:border-slate-300 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-600'
                     }`}
                   >
                     <method.icon className="h-5 w-5" />
@@ -245,9 +243,8 @@ export function Checkout() {
               </div>
             </section>
 
-            {/* Order items summary (mobile) */}
-            <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm lg:hidden">
-              <h2 className="mb-4 text-lg font-semibold text-slate-900">
+            <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 lg:hidden">
+              <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">
                 Itens do pedido
               </h2>
               <ul className="space-y-3">
@@ -256,10 +253,10 @@ export function Checkout() {
                     key={item.product.id}
                     className="flex justify-between text-sm"
                   >
-                    <span className="text-slate-600">
+                    <span className="text-slate-600 dark:text-slate-300">
                       {item.quantity}x {item.product.name}
                     </span>
-                    <span className="font-medium">
+                    <span className="font-medium dark:text-slate-100">
                       {formatCurrency(item.product.price * item.quantity)}
                     </span>
                   </li>
@@ -271,23 +268,23 @@ export function Checkout() {
           <div className="space-y-4 lg:sticky lg:top-24 lg:self-start">
             <CartSummary showCheckoutButton={false} />
 
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
               <ul className="mb-4 hidden space-y-2 text-sm lg:block">
                 {items.map((item) => (
                   <li
                     key={item.product.id}
                     className="flex justify-between gap-2"
                   >
-                    <span className="truncate text-slate-500">
+                    <span className="truncate text-slate-500 dark:text-slate-400">
                       {item.quantity}x {item.product.name}
                     </span>
-                    <span className="shrink-0 font-medium">
+                    <span className="shrink-0 font-medium dark:text-slate-100">
                       {formatCurrency(item.product.price * item.quantity)}
                     </span>
                   </li>
                 ))}
               </ul>
-              <p className="mb-4 text-xs text-slate-400">
+              <p className="mb-4 text-xs text-slate-400 dark:text-slate-500">
                 Total com frete: {formatCurrency(subtotal + shipping)}
               </p>
               <Button

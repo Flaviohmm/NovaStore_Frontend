@@ -14,10 +14,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const variants: Record<Variant, string> = {
   primary:
     'bg-brand-600 text-white hover:bg-brand-700 shadow-sm shadow-brand-600/20',
-  secondary: 'bg-slate-900 text-white hover:bg-slate-800',
+  secondary:
+    'bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white',
   outline:
-    'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-400',
-  ghost: 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
+    'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-400 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:border-slate-500',
+  ghost:
+    'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white',
   danger: 'bg-red-600 text-white hover:bg-red-700',
 }
 
@@ -43,6 +45,7 @@ export function Button({
         inline-flex items-center justify-center rounded-xl font-medium
         transition-all duration-150 focus-visible:outline-none
         focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2
+        dark:focus-visible:ring-offset-slate-950
         disabled:pointer-events-none disabled:opacity-50
         ${variants[variant]}
         ${sizes[size]}

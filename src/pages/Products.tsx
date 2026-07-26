@@ -28,8 +28,10 @@ export function Products() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-900">Produtos</h1>
-        <p className="mt-1 text-slate-500">
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
+          Produtos
+        </h1>
+        <p className="mt-1 text-slate-500 dark:text-slate-400">
           {isLoading
             ? 'Carregando catálogo...'
             : `${products?.length ?? 0} produtos encontrados`}
@@ -41,7 +43,7 @@ export function Products() {
       </div>
 
       {isError ? (
-        <div className="rounded-2xl border border-red-200 bg-red-50 p-8 text-center text-red-700">
+        <div className="rounded-2xl border border-red-200 bg-red-50 p-8 text-center text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
           Erro ao carregar produtos. Tente novamente.
         </div>
       ) : (
