@@ -57,10 +57,7 @@ export function Home() {
             </p>
             <div className="flex flex-wrap gap-3">
               <Link to="/produtos">
-                <Button
-                  size="lg"
-                  className="bg-white text-brand-900 hover:bg-brand-50"
-                >
+                <Button size="lg" variant="inverse">
                   Ver produtos
                   <ArrowRight className="h-4 w-4" />
                 </Button>
@@ -69,7 +66,7 @@ export function Home() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white/30 bg-transparent text-white hover:bg-white/10 dark:border-white/30 dark:bg-transparent dark:text-white dark:hover:bg-white/10"
+                  className="border-white/40 bg-transparent text-white hover:border-white/60 hover:bg-white/10 hover:text-white"
                 >
                   Eletrônicos
                 </Button>

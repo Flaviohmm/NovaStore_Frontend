@@ -1,6 +1,7 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import { cn } from '@/lib/cn'
 
-type Variant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'
+type Variant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'inverse'
 type Size = 'sm' | 'md' | 'lg'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -21,6 +22,9 @@ const variants: Record<Variant, string> = {
   ghost:
     'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white',
   danger: 'bg-red-600 text-white hover:bg-red-700',
+  // White button for dark backgrounds (hero, etc.)
+  inverse:
+    'bg-white text-slate-900 hover:bg-slate-100 shadow-sm border border-transparent',
 }
 
 const sizes: Record<Size, string> = {
@@ -36,22 +40,22 @@ export function Button({
   disabled,
   fullWidth,
   children,
-  className = '',
+  className,
   ...props
 }: ButtonProps) {
   return (
     <button
-      className={`
-        inline-flex items-center justify-center rounded-xl font-medium
-        transition-all duration-150 focus-visible:outline-none
-        focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2
-        dark:focus-visible:ring-offset-slate-950
-        disabled:pointer-events-none disabled:opacity-50
-        ${variants[variant]}
-        ${sizes[size]}
-        ${fullWidth ? 'w-full' : ''}
-        ${className}
-      `}
+      className={cn(
+        'inline-flex items-center justify-center rounded-xl font-medium',
+        'transition-all duration-150 focus-visible:outline-none',
+        'focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2',
+        'dark:focus-visible:ring-offset-slate-950',
+        'disabled:pointer-events-none disabled:opacity-50',
+        variants[variant],
+        sizes[size],
+        fullWidth && 'w-full',
+        className,
+      )}
       disabled={disabled || loading}
       {...props}
     >
