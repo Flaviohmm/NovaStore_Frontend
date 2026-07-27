@@ -1,72 +1,37 @@
-import { products } from '@/data/products'
 import type { Product, ProductFilters } from '@/types'
+import { api } from './api'
 
-const delay = (ms = 400) => new Promise((resolve) => setTimeout(resolve, ms))
+function queryString(filters: ProductFilters = {}) {
+  const params = new URLSearchParams()
+  if (filters.category && filters.category !== 'all') params.set('category', filters.category)
+  if (filters.search) params.set('search', filters.search)
+  if (filters.minPrice !== undefined) params.set('minPrice', String(filters.minPrice))
+  if (filters.maxPrice !== undefined) params.set('maxPrice', String(filters.maxPrice))
+  if (filters.sortBy) params.set('sortBy', filters.sortBy)
+  const query = params.toString()
+  return query ? `?${query}` : ''
+}
 
 export async function fetchProducts(filters?: ProductFilters): Promise<Product[]> {
-  await delay()
-
-  let result = [...products]
-
-  if (filters?.category && filters.category !== 'all') {
-    result = result.filter((p) => p.category === filters.category)
-  }
-
-  if (filters?.search) {
-    const term = filters.search.toLowerCase()
-    result = result.filter(
-      (p) =>
-        p.name.toLowerCase().includes(term) ||
-        p.description.toLowerCase().includes(term) ||
-        p.tags?.some((t) => t.toLowerCase().includes(term)),
-    )
-  }
-
-  if (filters?.minPrice !== undefined) {
-    result = result.filter((p) => p.price >= filters.minPrice!)
-  }
-
-  if (filters?.maxPrice !== undefined) {
-    result = result.filter((p) => p.price <= filters.maxPrice!)
-  }
-
-  switch (filters?.sortBy) {
-    case 'name':
-      result.sort((a, b) => a.name.localeCompare(b.name))
-      break
-    case 'price-asc':
-      result.sort((a, b) => a.price - b.price)
-      break
-    case 'price-desc':
-      result.sort((a, b) => b.price - a.price)
-      break
-    case 'rating':
-      result.sort((a, b) => b.rating - a.rating)
-      break
-  }
-
-  return result
+  return api<Product[]>(`/products${queryString(filters)}`)
 }
 
 export async function fetchProductById(id: string): Promise<Product | null> {
-  await delay(300)
-  return products.find((p) => p.id === id) ?? null
+  try {
+    return await api<Product>(`/products/${id}`)
+  } catch (error) {
+    if (error instanceof Error && error.message === 'Produto não encontrado') return null
+    throw error
+  }
 }
 
 export async function fetchFeaturedProducts(): Promise<Product[]> {
-  await delay(300)
-  return products.filter((p) => p.featured)
+  return api<Product[]>('/products/featured')
 }
 
 export async function fetchRelatedProducts(
   productId: string,
   limit = 4,
 ): Promise<Product[]> {
-  await delay(300)
-  const product = products.find((p) => p.id === productId)
-  if (!product) return []
-
-  return products
-    .filter((p) => p.category === product.category && p.id !== productId)
-    .slice(0, limit)
+  return api<Product[]>(`/products/${productId}/related?limit=${limit}`)
 }

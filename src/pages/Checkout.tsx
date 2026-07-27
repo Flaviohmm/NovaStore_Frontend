@@ -7,6 +7,7 @@ import { formatCurrency } from '@/lib/format'
 import { CartSummary } from '@/components/cart/CartSummary'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
+import { createOrder } from '@/api/orders'
 import type { CheckoutForm } from '@/types'
 
 const initialForm: CheckoutForm = {
@@ -33,6 +34,7 @@ export function Checkout() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [orderComplete, setOrderComplete] = useState(false)
   const [orderId, setOrderId] = useState('')
+  const [submitError, setSubmitError] = useState('')
 
   if (itemCount === 0 && !orderComplete) {
     return (
@@ -105,12 +107,25 @@ export function Checkout() {
     if (!validate()) return
 
     setIsSubmitting(true)
-    await new Promise((r) => setTimeout(r, 1200))
-    const id = `NS-${Date.now().toString(36).toUpperCase()}`
-    setOrderId(id)
-    clearCart()
-    setOrderComplete(true)
-    setIsSubmitting(false)
+    setSubmitError('')
+    try {
+      const order = await createOrder({
+        ...form,
+        items: items.map((item) => ({
+          productId: item.product.id,
+          quantity: item.quantity,
+        })),
+      })
+      setOrderId(order.id)
+      clearCart()
+      setOrderComplete(true)
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error ? error.message : 'Não foi possível finalizar o pedido.',
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const shipping = subtotal >= 200 ? 0 : 19.9
@@ -139,6 +154,11 @@ export function Checkout() {
       )}
 
       <form onSubmit={handleSubmit}>
+        {submitError && (
+          <div className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
+            {submitError}
+          </div>
+        )}
         <div className="grid gap-8 lg:grid-cols-3">
           <div className="space-y-6 lg:col-span-2">
             <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">

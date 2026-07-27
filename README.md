@@ -29,6 +29,15 @@ npm install
 npm run dev
 ```
 
+Para usar o backend Spring Boot, inicie-o em outro terminal:
+
+```bash
+cd ecommerce-backend
+mvn spring-boot:run
+```
+
+O frontend usa `http://localhost:8080/api` por padrão. Para outro endereço, crie um arquivo `.env.local` na raiz com `VITE_API_URL=http://seu-host:porta/api`.
+
 ```bash
 npm run build   # build de produção
 npm run preview # preview do build
@@ -38,7 +47,7 @@ npm run preview # preview do build
 
 ```
 src/
-├── api/           # Camada de dados mock (produtos, auth)
+├── api/           # Cliente HTTP e chamadas à API Spring Boot
 ├── components/    # UI, layout, produto, carrinho
 ├── context/       # CartContext e AuthContext
 ├── data/          # Catálogo mock
