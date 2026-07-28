@@ -6,14 +6,15 @@ import {
   useState,
   type ReactNode,
 } from 'react'
-import { login as loginApi, logout as logoutApi } from '@/api/auth'
-import type { LoginCredentials, User } from '@/types'
+import { login as loginApi, logout as logoutApi, register as registerApi } from '@/api/auth'
+import type { LoginCredentials, RegisterCredentials, User } from '@/types'
 
 interface AuthContextValue {
   user: User | null
   isAuthenticated: boolean
   isLoading: boolean
   login: (credentials: LoginCredentials) => Promise<void>
+  register: (credentials: RegisterCredentials) => Promise<void>
   logout: () => Promise<void>
 }
 
@@ -56,15 +57,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
+  const register = useCallback(async (credentials: RegisterCredentials) => {
+    setIsLoading(true)
+    try {
+      const registeredUser = await registerApi(credentials)
+      setUser(registeredUser)
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(registeredUser))
+    } finally {
+      setIsLoading(false)
+    }
+  }, [])
+
   const value = useMemo(
     () => ({
       user,
       isAuthenticated: !!user,
       isLoading,
       login,
+      register,
       logout,
     }),
-    [user, isLoading, login, logout],
+    [user, isLoading, login, register, logout],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

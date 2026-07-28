@@ -10,6 +10,7 @@ import { Product } from '@/pages/Product'
 import { Cart } from '@/pages/Cart'
 import { Checkout } from '@/pages/Checkout'
 import { Login } from '@/pages/Login'
+import { Register } from '@/pages/Register'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,6 +37,7 @@ export default function App() {
                   <Route path="carrinho" element={<Cart />} />
                   <Route path="checkout" element={<Checkout />} />
                   <Route path="login" element={<Login />} />
+                  <Route path="cadastro" element={<Register />} />
                   <Route
                     path="*"
                     element={

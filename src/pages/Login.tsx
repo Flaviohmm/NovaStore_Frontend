@@ -98,10 +98,7 @@ export function Login() {
           </Button>
 
           <p className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
-            Não tem conta?{' '}
-            <span className="font-medium text-brand-600 dark:text-brand-400">
-              Cadastro em breve
-            </span>
+            Não tem conta?{' '}<Link to="/cadastro" className="font-medium text-brand-600 hover:underline dark:text-brand-400">Crie sua conta</Link>
           </p>
         </form>
 

@@ -37,6 +37,10 @@ export interface LoginCredentials {
   password: string
 }
 
+export interface RegisterCredentials extends LoginCredentials {
+  name: string
+}
+
 export interface CheckoutForm {
   fullName: string
   email: string
