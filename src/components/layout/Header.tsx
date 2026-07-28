@@ -7,12 +7,12 @@ import {
   User,
   X,
   LogOut,
-  Store,
 } from 'lucide-react'
 import { useCart } from '@/context/CartContext'
 import { useAuth } from '@/context/AuthContext'
 import { Button } from '@/components/ui/Button'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
+import { Logo } from './Logo'
 
 const navLinks = [
   { to: '/', label: 'Home' },
@@ -45,12 +45,10 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8">
         <Link
           to="/"
-          className="flex items-center gap-2 font-bold text-slate-900 dark:text-white"
+          className="shrink-0 rounded-lg transition-opacity hover:opacity-85"
+          aria-label="Página inicial da NovaStore"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-white">
-            <Store className="h-5 w-5" />
-          </span>
-          <span className="hidden sm:inline">NovaStore</span>
+          <Logo />
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
