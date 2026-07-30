@@ -4,6 +4,7 @@ import { CheckCircle, CreditCard, QrCode, FileText } from 'lucide-react'
 import { useCart } from '@/context/CartContext'
 import { useAuth } from '@/context/AuthContext'
 import { formatCurrency } from '@/lib/format'
+import { applyPhoneMask, applyCepMask } from '@/lib/masks'
 import { CartSummary } from '@/components/cart/CartSummary'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
@@ -82,7 +83,13 @@ export function Checkout() {
   }
 
   const update = (field: keyof CheckoutForm, value: string) => {
-    setForm((prev) => ({ ...prev, [field]: value }))
+    const masked =
+      field === 'phone'
+        ? applyPhoneMask(value)
+        : field === 'zipCode'
+          ? applyCepMask(value)
+          : value
+    setForm((prev) => ({ ...prev, [field]: masked }))
     if (errors[field]) {
       setErrors((prev) => ({ ...prev, [field]: undefined }))
     }
